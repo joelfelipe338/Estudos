@@ -1,0 +1,33 @@
+.menu{
+	height: 40px;
+	width:100%;
+	background-color:red;
+	color:white;
+}
+
+ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+body{
+	margin:0;
+}
+li{
+	padding:0px 20px;
+	line-height:40px;
+	float:left;
+	cursor:pointer;
+}
+.menu1{
+	height:40px;
+}
+
+.menu2{
+	background-color:red;
+	display:none;
+	height:120px;
+	width:100px;
+	position:absolute;
+}
