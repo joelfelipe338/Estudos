@@ -2,7 +2,7 @@
 #define JOGADOR_H
 
 void jogadorInfo();
-bool jogada();
+void jogada(char val[],char op);
 void vezJogador();
 
 
