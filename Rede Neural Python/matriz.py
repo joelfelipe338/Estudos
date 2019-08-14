@@ -42,6 +42,14 @@ class Matriz:
         return C
 
     @staticmethod
+    def mult_escalar(A, B):
+        C = Matriz(A.linha, A.coluna)
+        for i in range(A.linha):
+            for j in range(A.coluna):
+                C.data[i][j] = A.data[i][j] * B
+        return C
+
+    @staticmethod
     def transposta(A):
         C = Matriz(A.linha, A.coluna)
         for i in range(A.linha):
