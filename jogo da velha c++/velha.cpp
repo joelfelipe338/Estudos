@@ -1,60 +1,45 @@
 #include <iostream>
 #include <cstdlib>
-//#include "tabuleiro.h"
-//#include "jogo.h"
+#include <string>
+#include "tabuleiro.h"
+
 
 using namespace std;
 
 
-void zerarTab(char val[]){
-    for(int i =0 ; i < 9; i++){
-        val[i] = (i+1) + '0';
-    }
+
+
+void jogadorInfo(string nome1,int vit1,string nome2,int vit2){
+     cout << "------Pontos------"<<endl;
+     cout << nome1 << ": "<<vit1<<" vitoria(s)."<<endl;
+     cout << nome2 << ": "<<vit2<<" vitoria(s)."<<endl;
 }
 
-void mostraTab(char val[]){
-    int cont = 0;
-    char tab[5][7];
-    for(int i = 0; i< 5; i++){
-        for(int j=0;j<7;j++){
-            if(i == 0 || i == 4){
-                tab[i][j] = '-';
-            }else if(j%2 == 0){
-                tab[i][j] = '|';
-            }else{
-                tab[i][j] = val[cont];
-                cont++;
-            }
+void jogada(char val[],char op,string jogador){
+    int jog;
+    bool sucess = false;
+    do{
+        cout << "qual sua jogada?"<<endl;
+        cin >> jog;
+        if(jog > 0 && jog < 10 && fazerJogada(val,jog,op)){
+            sucess = true;
+        }else{
+            system("clear||cls");
+            cout << "jogada invalida!!!"<<endl;
+            mostraTab(val);
+            cout << jogador <<" eh a sua vez,"<<endl;
         }
-    }
-
-    for(int i = 0; i< 5; i++){
-        for(int j=0;j<7;j++){
-            cout << tab[i][j];
-        }
-        cout << endl;
-    }
+    }while(sucess != true);
+    system("clear||cls");
 }
 
-bool completoTab(char val[]){
-    int complete = 0;
-    for(int i = 0; i < 9; i++){
-        if(val[i] == 'x' || val[i] == 'o'){
-            complete++;
-        }
-    }
-    if(complete == 9){
-        return true;
-    }else return false;
-}
-
-bool fazerJogada(char val[], int pos, char jogada){
-    if(val[pos-1] != 'x' && val[pos-1] != 'o'){
-        val[pos-1] = jogada;
-        return true;
+string vezJogador(string jogAtual,string nome1,string nome2){
+    if(jogAtual == nome1){
+        jogAtual = nome2;
     }else{
-        return false;
+        jogAtual = nome1;
     }
+    return jogAtual;
 }
 
 void jogadores(string *nome1, string *nome2){
@@ -64,8 +49,6 @@ void jogadores(string *nome1, string *nome2){
     getline(cin, *nome2);
     system("clear||cls");
 }
-
-
 
 void contarRodada(int *rodada){
     *rodada += 1;
@@ -97,39 +80,6 @@ bool ganhou(char val[]){
   }
 }
 
-void jogadorInfo(string nome1,int vit1,string nome2,int vit2){
-     cout << "------Pontos------"<<endl;
-     cout << nome1 << ": "<<vit1<<" vitoria(s)."<<endl;
-     cout << nome2 << ": "<<vit2<<" vitoria(s)."<<endl;
- }
-
-string vezJogador(string jogAtual,string nome1,string nome2){
-    if(jogAtual == nome1){
-        jogAtual = nome2;
-    }else{
-        jogAtual = nome1;
-    }
-    return jogAtual;
-}
-
-void jogada(char val[],char op){
-    int jog;
-    bool sucess = false;
-    do{
-        cout << "qual sua jogada?"<<endl;
-        cin >> jog;
-        if(jog > 0 && jog < 10 && fazerJogada(val,jog,op)){
-            sucess = true;
-        }else{
-            system("clear||cls");
-            cout << "jogada invalida!!!"<<endl;
-            mostraTab(val);
-        }
-    }while(sucess != true);
-    system("clear||cls");
-
-}
-
 void iniciaJogo(char val[],int rod,string nome1,string nome2,int *vit1,int *vit2){
    bool venceu = false;
    char jog = 'x';
@@ -139,22 +89,22 @@ void iniciaJogo(char val[],int rod,string nome1,string nome2,int *vit1,int *vit2
    }else{
        jogAtual = nome2;
    }
-   cout << rod <<"° rodada:"<<endl;
+   cout << "rodada: "<<rod<<endl;
     mostraTab(val);
     while(venceu != true){
         jog = 'x';
         jogAtual = vezJogador(jogAtual,nome1,nome2);
-        cout <<jogAtual <<" é a sua vez,"<<endl;
-        jogada(val,jog);
-        cout << rod <<"° rodada:"<<endl;
+        cout <<jogAtual <<" eh a sua vez,"<<endl;
+        jogada(val,jog,jogAtual);
+        cout << "rodada: "<<rod<<endl;
         mostraTab(val);
         if(ganhou(val)) {venceu = true;break;}
         if(completoTab(val)) break;
         jogAtual = vezJogador(jogAtual,nome1,nome2);
-        cout <<jogAtual <<" é a sua vez,"<<endl;
+        cout <<jogAtual <<" eh a sua vez,"<<endl;
         jog = 'o';
-        jogada(val,jog);
-        cout << rod <<"° rodada:"<<endl;
+        jogada(val,jog,jogAtual);
+        cout <<"rodada: "<<rod<<endl;
         mostraTab(val);
         if(ganhou(val)) {;venceu = true;}
     }
@@ -178,7 +128,7 @@ bool continuar(){
     while(op<1 || op>2){
         cout << "Proxima partida? "<<endl;
         cout<<"[1] Sim."<<endl;
-        cout<<"[2] Não."<<endl;
+        cout<<"[2] Nao."<<endl;
         cin >> op;
         if(op == 2){
             return false;
@@ -188,6 +138,8 @@ bool continuar(){
         }
     }
 }
+
+
 int main(){
     int rodadas = 1,vit1=0,vit2=0;
     bool ativo = true;

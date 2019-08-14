@@ -1,11 +1,11 @@
-#ifndef JOGO_H
+#ifndef _JOGO_H_
 #define JOGO_H
 
 
-void iniciaJogo();
-void jogadores(char *nome1, char *nome2);
+void iniciaJogo(char val[],int rod,string nome1,string nome2,int *vit1,int *vit2);
+void jogadores(string *nome1, string *nome2);
 void contarRodada(int *rodada);
 bool ganhou(char val[]);
+bool continuar();
 
-
-#endif // TABULEIRO_H
+#endif 
