@@ -8,7 +8,7 @@ class Matriz:
         for i in range(self.linha):
             linha = []
             for j in range(self.coluna):
-                linha.append(random())
+                linha.append(round(random()*10))
             self.data.append(linha)
 
     def print(self):
@@ -51,9 +51,9 @@ class Matriz:
 
     @staticmethod
     def transposta(A):
-        C = Matriz(A.linha, A.coluna)
-        for i in range(A.linha):
-            for j in range(A.coluna):
+        C = Matriz(A.coluna, A.linha)
+        for i in range(A.coluna):
+            for j in range(A.linha):
                 C.data[i][j] = A.data[j][i]
         return C
 
@@ -68,3 +68,4 @@ class Matriz:
                 C.data[i][j] = soma
                 soma = 0
         return C
+
