@@ -1,6 +1,8 @@
+import math
 from random import random
-class Matriz:
 
+
+class Matriz:
     def __init__(self,linha,coluna):
         self.linha = linha
         self.coluna = coluna
@@ -8,7 +10,7 @@ class Matriz:
         for i in range(self.linha):
             linha = []
             for j in range(self.coluna):
-                linha.append(round(random()*10))
+                linha.append(random()*2-1)
             self.data.append(linha)
 
     def print(self):
@@ -25,12 +27,34 @@ class Matriz:
                 C.data[i][j] = A.data[i][j] + B.data[i][j]
         return C
 
+    def valor(self,A):
+
+        for i in range(self.linha):
+            for j in range(self.coluna):
+                self.data[i][j] = A
+
+
     @staticmethod
     def sub(A, B):
         C = Matriz(A.linha, A.coluna)
         for i in range(A.linha):
             for j in range(B.coluna):
                 C.data[i][j] = A.data[i][j] - B.data[i][j]
+        return C
+
+    @staticmethod
+    def matriz(A):
+        C = Matriz(len(A), 1)
+        for i in range(C.linha):
+            for j in range(C.coluna):
+                C.data[i][j] = A[i]
+        return C
+
+    @staticmethod
+    def array(A):
+        C = []
+        for i in range(A.coluna):
+            C.append(A.data[i][0])
         return C
 
     @staticmethod
@@ -57,6 +81,7 @@ class Matriz:
                 C.data[i][j] = A.data[j][i]
         return C
 
+
     @staticmethod
     def mult(A, B):
         soma = 0
@@ -69,3 +94,23 @@ class Matriz:
                 soma = 0
         return C
 
+    @staticmethod
+    def sigmoid(A):
+        for i in range(A.linha):
+            for j in range(A.coluna):
+                A.data[i][j] = sigmoid(A.data[i][j])
+        return A
+
+    @staticmethod
+    def derivadaSigmoid(A):
+        for i in range(A.linha):
+            for j in range(A.coluna):
+                A.data[i][j] = derivadaSigmoid(A.data[i][j])
+        return A
+
+
+def sigmoid(x):
+    return 1/(1 + math.exp(-x))
+
+def derivadaSigmoid(x):
+    return x*(1 - x)
