@@ -1,0 +1,20 @@
+.pontos{
+	height: 120px;
+	width: 120px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color:#ddd;
+	text-align: center;
+}
+#placar{
+	font-size: 50px;
+
+}
+.bola{
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background-color: black;
+	position: absolute;
+}

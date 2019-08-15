@@ -1,0 +1,12 @@
+
+
+.bola{
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	position: absolute;
+	top:0;
+	left: 0;
+	background-color: blue;
+	cursor:move;
+}
