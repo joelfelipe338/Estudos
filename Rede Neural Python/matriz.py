@@ -10,7 +10,7 @@ class Matriz:
         for i in range(self.linha):
             linha = []
             for j in range(self.coluna):
-                linha.append(random()*2-1)
+                linha.append(random())
             self.data.append(linha)
 
     def print(self):

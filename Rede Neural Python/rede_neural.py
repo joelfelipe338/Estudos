@@ -14,7 +14,7 @@ class RedeNeural:
 		self.bias_OS.valor(1)
 		self.pesos_EO = Matriz(neoOcul,neoEnt)
 		self.pesos_OS = Matriz(neoSai,neoOcul)
-		self.taxa_aprendizado = 0.2
+		self.taxa_aprendizado = 0.1
 
 	def treino(self,entrada,saidaFinal):
 		# Entrada -> Oculta
