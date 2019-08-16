@@ -106,7 +106,7 @@ void iniciaJogo(char val[],int rod,string nome1,string nome2,int *vit1,int *vit2
         jogada(val,jog,jogAtual);
         cout <<"rodada: "<<rod<<endl;
         mostraTab(val);
-        if(ganhou(val)) {;venceu = true;}
+        if(ganhou(val)) {venceu = true;}
     }
     if(venceu == true){
       cout << jogAtual <<" venceu o jogo parabens"<<endl;
