@@ -1,0 +1,30 @@
+.tabuleiro{
+	height: 480px;
+	width: 480px;
+	background-color: black;
+	padding: 10px;
+}
+.casa{
+	float:left;
+	height: 140px;
+	width: 140px;
+	margin:10px;
+	background-color: aqua;
+}
+.X{
+	height: 140px;
+	width:140px;
+	cursor: move;
+	color:red;
+	font-size: 140px;
+	position: absolute;
+}
+.O{
+	height: 140px;
+	width:140px;
+	left:140px;
+	cursor: move;
+	color:red;
+	font-size: 140px;
+	position: absolute;
+}
