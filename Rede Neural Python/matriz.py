@@ -43,7 +43,7 @@ class Matriz:
         return C
 
     @staticmethod
-    def matriz(A):
+    def matrizColuna(A):
         C = Matriz(len(A), 1)
         for i in range(C.linha):
             for j in range(C.coluna):
@@ -51,10 +51,18 @@ class Matriz:
         return C
 
     @staticmethod
+    def matrizLinha(A):
+        C = Matriz(1,len(A))
+        for i in range(C.linha):
+            for j in range(C.coluna):
+                C.data[i][j] = A[j]
+        return C
+
+    @staticmethod
     def array(A):
         C = []
         for i in range(A.coluna):
-            C.append(A.data[i][0])
+            C.append(A.data[0][i])
         return C
 
     @staticmethod
