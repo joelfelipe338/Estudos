@@ -1,50 +1,27 @@
-
-from rede_neural import RedeNeural
-from perceptron import Perceptron
+from adaline import Adaline
 from random import  randint
-t1 =  Perceptron(3)
-t2 = Perceptron(3)
-t3 = Perceptron(3)
-t4 = Perceptron(3)
-t5 = Perceptron(3)
+
+t1 = Adaline(2)
+
+E = [[1,1],[1,0],[0,1],[0,0]]
+S = [1,-1,-1,1]
 
 treino = True
-
-E = [[-0.6508,0.1097,4.0009],[-1.4492,0.8896,4.4005],[2.0850,0.6876,12.0710],
-     [0.2626,1.1476,7.7985],[0.6418,1.0234,7.0427],[0.2569,0.6730,8.3265],
-     [1.1155,0.6043,7.4446],[0.0914,0.3399,7.0677],[0.0121,0.5256,4.6316],
-     [-0.0429,0.4660,5.4323],[0.4340,0.6870,8.2287],[0.2735,1.0287,7.1934],
-     [0.4839,0.4851,7.4850],[0.4089,-0.1267,5.5019],[1.4391,0.1614,8.5843],
-     [-0.9115,-0.1973,2.1962],[0.3654,1.0475,7.4858],[0.2144,0.7515,7.1699],
-     [0.2013, 1.0014, 6.5489],[0.6483, 0.2183, 5.8991],[-0.1147, 0.2242, 7.2435],
-     [-0.7970, 0.8795, 3.8762], [-1.0625, 0.6366, 2.4707], [0.5307, 0.1285, 5.6883],
-     [-1.2200, 0.7777, 1.7252], [0.3957, 0.1076, 5.6623], [-0.1013, 0.5989, 7.1812],
-     [2.4482, 0.9455,11.2095], [2.0149, 0.6192, 10.9263], [0.2012, 0.2611, 5.4631]]
-
-S = [-1,-1,-1,1,1,-1,1,-1,1,1,
-     -1,1,-1,-1,-1,-1,1,1,1,1,
-     -1,1,1,1,1,-1,-1,1,-1,1]
-x = 1
-cont = 0
-peso = 1
-while treino:
+x = 0
+while(treino):
+    print("Geração : ",x)
     x += 1
     for i in range(len(E)):
-        if(t5.treino(E[i],S[i]) == False):
-            cont += 1
-        peso = 0
-    if (cont == len(E)):
-        treino = False
-        print("!!!!ACABOU, REDE TREINADA!!!!")
-    cont = 0
-print("Geração ",x,":")
-print(t5.predict([-0.3665,0.0620,5.9891]))
-print(t5.predict([-0.7842,1.1267,5.5912]))
-print(t5.predict([0.3012,0.5611,5.8234]))
-print(t5.predict([0.7757,1.0648,8.0677]))
-print(t5.predict([0.1570,0.8028,6.3040]))
-print(t5.predict([-0.7014,1.0316,3.6005]))
-print(t5.predict([0.3748,0.1536,6.1537]))
-print(t5.predict([-0.6920,0.9404,4.4058]))
-print(t5.predict([-1.3970,0.7141,4.9263]))
-print(t5.predict([-1.8842,-0.2805,1.2548]))
+        erroAnt = t1.EQM(E,S)
+        t1.treino(E[i],S[i])
+        erroAtual = t1.EQM(E,S)
+        if(t1.testeErro(erroAnt,erroAtual)):
+            treino = False
+            print("Rede Treinada")
+            break
+
+
+print(t1.predict([1,1]))
+print(t1.predict([1,0]))
+print(t1.predict([0,1]))
+print(t1.predict([0,0]))
