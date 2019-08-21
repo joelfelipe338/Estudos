@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "tabuleiro.h"
 using namespace std;
 
