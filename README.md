@@ -1,2 +1,2 @@
-# Estudos
-Projetos em diversas linguagens de programação
+# Jogo da Velha
+Projeto da 2 unidade de Linguagem de Programação I
