@@ -10,7 +10,7 @@ using namespace std;
 
 
 void jogadorInfo(string nome1,int vit1,string nome2,int vit2){
-     cout << "------Pontos------"<<endl;
+     cout << "------Pontuação------"<<endl;
      cout << nome1 << ": "<<vit1<<" vitoria(s)."<<endl;
      cout << nome2 << ": "<<vit2<<" vitoria(s)."<<endl;
 }
